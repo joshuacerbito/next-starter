@@ -1,3 +1,5 @@
+import { PropTypes as PT } from "prop-types";
+
 const List = ({ posts }) => {
   return (
     <section className="m-10 grid grid-cols-3 gap-10">
@@ -12,6 +14,17 @@ const List = ({ posts }) => {
       ))}
     </section>
   );
+};
+
+List.propTypes = {
+  posts: PT.arrayOf(
+    PT.shape({
+      id: PT.number.isRequired,
+      user: PT.string.isRequired,
+      title: PT.string.isRequired,
+      body: PT.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default List;

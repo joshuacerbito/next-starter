@@ -1,4 +1,4 @@
-import List from "../components/list";
+import { List } from "../components/list";
 
 export default function Home({ posts }) {
   return (
@@ -17,12 +17,10 @@ export async function getStaticProps() {
     (res) => res.json()
   );
 
-  const postsWithUser = posts.map((post) => {
-    return {
-      user: users.find(({ id }) => post.userId === id).name,
-      ...post,
-    };
-  });
+  const postsWithUser = posts.map((post) => ({
+    ...post,
+    user: users.find(({ id }) => post.userId === id).name,
+  }));
 
   return {
     props: {
